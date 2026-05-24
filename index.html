@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      body {
+        width: 100%;
+        height: 100vh;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .bg {
+        background-image: url("./image/ultah.jpg");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+
+        width: 100%;
+        height: 100vh;
+      }
+      .box {
+        width: 350px;
+        height: 350px;
+        background-color: rgb(255, 255, 255);
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        border-radius: 8px;
+        box-shadow: 0 0 20px 2px rgba(0, 0, 0, 0.6);
+      }
+
+      .box h1 {
+        color: teal;
+        font-size: 28px;
+        font-weight: 900;
+      }
+
+      .box h3 {
+        color: rgb(238, 255, 5);
+        margin: 14px 0px;
+        font-size: 40px;
+        font-weight: bold;
+        font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+        text-shadow: 0px 0px 10px red;
+        letter-spacing: 2px;
+      }
+
+      .box button {
+        border: none;
+        padding: 16px 100px;
+        background-color: red;
+        color: white;
+        font-size: 20px;
+        border-radius: 50px;
+        font-weight: bold;
+        cursor: pointer;
+      }
+
+      /* LOVE BACKGROUND */
+      .love-container {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        overflow: hidden;
+        z-index: -1;
+      }
+
+      .love {
+        position: absolute;
+        color: red;
+        font-size: 25px;
+        animation: fall linear infinite;
+        top: -50px;
+      }
+
+      @keyframes fall {
+        0% {
+          transform: translateY(-50px) rotate(0deg);
+          opacity: 1;
+        }
+
+        100% {
+          transform: translateY(110vh) rotate(360deg);
+          opacity: 0;
+        }
+      }
+
+      /* CARD */
+      .card {
+        width: 400px;
+        overflow: hidden;
+        background: white;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        position: relative;
+        z-index: 2;
+      }
+
+      .card img {
+        width: 100%;
+        height: 500px;
+        object-fit: cover;
+        display: block;
+      }
+
+      .content {
+        background: blue;
+        color: white;
+        text-align: center;
+        padding: 20px;
+      }
+
+      .content h2 {
+        margin-bottom: 10px;
+      }
+
+      #all {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="bg">
+      <div class="box">
+        <h1>HAPPY BIRTHDAY</h1>
+        <h3>NADIRA MAULIDA</h3>
+        <button>klik disini</button>
+      </div>
+    </div>
+
+    <!-- tampilkan -->
+    <!-- LOVE -->
+    <div id="all">
+      <div class="love-container"></div>
+
+      <!-- CARD -->
+      <div class="card">
+        <img src="image/dira.jpeg" alt="" />
+
+        <div class="content">
+          <h2>Nadira Maulida</h2>
+          <p>24 Mei 2022</p>
+        </div>
+      </div>
+    </div>
+
+     <audio id="music" src="audio/hbd.mp3"></audio>
+  </body>
+  <script>
+    const loveContainer = document.querySelector(".love-container");
+
+    function createLove() {
+      const love = document.createElement("div");
+      love.classList.add("love");
+
+      love.innerHTML = "❤";
+
+      love.style.left = Math.random() * window.innerWidth + "px";
+
+      love.style.animationDuration = Math.random() * 3 + 2 + "s";
+
+      love.style.fontSize = Math.random() * 20 + 20 + "px";
+
+      loveContainer.appendChild(love);
+
+      setTimeout(() => {
+        love.remove();
+      }, 5000);
+    }
+
+    setInterval(createLove, 200);
+
+    const btn = document.querySelector("button");
+    const bg = document.querySelector(".bg");
+    const all = document.getElementById("all");
+    const music = document.getElementById("music");
+
+    btn.addEventListener("click", function () {
+      all.style.display = "block";
+      bg.style.display = "none";
+
+       music.play();
+    });
+  </script>
+</html>
